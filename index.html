@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue First Project | Todo</title>
+    <script src="https://unpkg.com/vue@3.2.20/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fruktur&display=swap" rel="stylesheet">
+    <style>
+        .complated{
+            text-decoration: line-through;
+            color: rgb(139, 139, 139);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <div class="container">
+            <div class="row">
+                <div class="col-8 offset-2 p-2">
+                    <h3 class="text-center" style="font-family: Fruktur;">Yapılacaklar Listesi</h3>
+                    <div class="d-flex justify-content-start p-4">
+                        <input type="text" class="form-control m-2" @keydown.enter = "addTodo" />
+                        <button class="btn btn-sm btn-warning  m-2"> Yeni</button>
+                    </div>
+                    <ul class="list-group">
+                        <li v-for = "todo in todoList" :key= "todo.id" class="list-group-item d-flex align-items-center justify-content-between" >
+                            <div class="m-2">
+                                <input type="checkbox" class="form-check-input" v-model= "todo.isComplated" id="`defaultTodo-${todo.id}`">
+                                <label for="" class="form-check-label ms-6" :class = "{'complated': todo.isComplated, 'unComplated': !todo.isConplated}" id="`defaultTodo-${todo.id}`" >{{todo.title}}</label>
+                            </div>
+
+                            <button class="btn btn-danger" @click = "removeQuestion(todo)"> Sil </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="app.js"></script>
+</body>
+</html>
